@@ -61,10 +61,11 @@ namespace GigHub.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == viewmodel.Id && g.ArtistId == userId);
-            gig.Venue = viewmodel.Venue;
-            gig.DateTime = viewmodel.GetDateTime();
-            gig.GenreId = viewmodel.Genre;
+            var gig = _context.Gigs
+                .Include(g => g.Attendances.Select(a =>a.Attendee))
+                .Single(g => g.Id == viewmodel.Id && g.ArtistId == userId);
+
+            gig.Modify(viewmodel.GetDateTime(), viewmodel.Venue, viewmodel.Genre);
 
             _context.SaveChanges();
 
@@ -126,6 +127,11 @@ namespace GigHub.Controllers
             return View(gigs);
         }
 
+        [HttpPost]
+        public ActionResult Search(GigsViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+        }
 
     }
 }

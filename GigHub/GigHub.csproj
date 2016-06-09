@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -165,12 +169,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\GigsController.cs" />
     <Compile Include="Controllers\API\AttendancesController.cs" />
+    <Compile Include="Controllers\API\NotificationsController.cs" />
     <Compile Include="Controllers\FolloweesController.cs" />
     <Compile Include="Controllers\API\FollowingsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
@@ -178,31 +184,27 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\AttendanceDto.cs" />
     <Compile Include="Dtos\FollowingDto.cs" />
+    <Compile Include="Dtos\GenreDto.cs" />
+    <Compile Include="Dtos\GigDto.cs" />
+    <Compile Include="Dtos\NotificationDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
+    <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Migrations\201605312202306_PopulateGenresTable.cs" />
     <Compile Include="Migrations\201605312202306_PopulateGenresTable.Designer.cs">
       <DependentUpon>201605312202306_PopulateGenresTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606010225096_addAttendanceClass.cs" />
-    <Compile Include="Migrations\201606010225096_addAttendanceClass.Designer.cs">
-      <DependentUpon>201606010225096_addAttendanceClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606011634400_addFollowing.cs" />
-    <Compile Include="Migrations\201606011634400_addFollowing.Designer.cs">
-      <DependentUpon>201606011634400_addFollowing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606020157235_addNotification.cs" />
-    <Compile Include="Migrations\201606020157235_addNotification.Designer.cs">
-      <DependentUpon>201606020157235_addNotification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606020327072_foo.cs" />
-    <Compile Include="Migrations\201606020327072_foo.Designer.cs">
-      <DependentUpon>201606020327072_foo.cs</DependentUpon>
+    <Compile Include="Migrations\201606082238062_addGenres.cs" />
+    <Compile Include="Migrations\201606082238062_addGenres.Designer.cs">
+      <DependentUpon>201606082238062_addGenres.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -217,11 +219,21 @@
     <Compile Include="ViewModels\GigsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site.css.map">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <None Include="Content\Site.less" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -234,8 +246,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -275,9 +293,11 @@
     <Content Include="Views\Gigs\GigForm.cshtml" />
     <Content Include="Views\Gigs\Mine.cshtml" />
     <Content Include="Views\Followees\Index.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Notifications\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -291,17 +311,8 @@
     <EmbeddedResource Include="Migrations\201605312202306_PopulateGenresTable.resx">
       <DependentUpon>201605312202306_PopulateGenresTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606010225096_addAttendanceClass.resx">
-      <DependentUpon>201606010225096_addAttendanceClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606011634400_addFollowing.resx">
-      <DependentUpon>201606011634400_addFollowing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606020157235_addNotification.resx">
-      <DependentUpon>201606020157235_addNotification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606020327072_foo.resx">
-      <DependentUpon>201606020327072_foo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606082238062_addGenres.resx">
+      <DependentUpon>201606082238062_addGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

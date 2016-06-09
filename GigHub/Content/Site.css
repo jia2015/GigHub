@@ -1,63 +1,73 @@
 ﻿body {
-    padding-top: 90px;
-    padding-bottom: 20px;
+  font-size: 17px;
+  padding-bottom: 20px;
+  padding-top: 70px;
 }
-
-/* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
 .dl-horizontal dt {
-    white-space: normal;
+  white-space: normal;
 }
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
+input {
+  max-width: 280px;
+}
+select {
+  max-width: 280px;
+}
 textarea {
-    max-width: 280px;
+  max-width: 280px;
 }
-
 span.field-validation-error {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
-
-.voffset {margin-top: 2px;}
-.voffset1 {margin-top: 5px;}
-.voffset2 {margin-top: 10px;}
-.voffset3 {margin-top: 20px;}
-.voffset4 {margin-top: 40px;}
-.voffset5 {margin-top: 80px;}
-
-
-/* Override bootstrap class*/
-
+.voffset {
+  margin-top: 2px;
+}
+.voffset1 {
+  margin-top: 5px;
+}
+.voffset2 {
+  margin-top: 10px;
+}
+.voffset3 {
+  margin-top: 20px;
+}
+.voffset4 {
+  margin-top: 40px;
+}
+.voffset5 {
+  margin-top: 80px;
+}
 .navbar-inverse {
-    background-color: #ff4342;
-    border-color: #ff4342;
+  background-color: #ff4342;
+  border-color: #ff4342;
 }
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #fff;
+.navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
 }
-
 .navbar-inverse .navbar-brand {
-    color: #fff;
+  color: #ffffff;
 }
-
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  
-    background-color: rgba(205,40,39,0.55)
+.navbar-inverse .notifications {
+  position: relative;
 }
-
-body {
-    font-size: 17px;
+.navbar-inverse .notifications .badge {
+  background-color: #a80a0a;
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+.navbar-inverse .navbar-nav > .open > a {
+  background-color: rgba(205, 40, 39, 0.55);
+}
+.navbar-inverse .navbar-nav > .open > a:hover {
+  background-color: rgba(205, 40, 39, 0.55);
+}
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: rgba(205, 40, 39, 0.55);
 }
 body,
 h1,
@@ -72,87 +82,96 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: Lato ,"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
 }
-
 .form-group {
-    margin-bottom: 20px;
-
+  margin-bottom: 20px;
 }
-
 .form-control {
-    font-size: 15px;
-    height: 44px;
-    -ms-border-radius: 9px;
-    border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px;
+  font-size: 15px;
+  height: 44px;
 }
-    .form-control:focus {
-        border-color: #2196f3;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-    }
+.form-control:focus {
+  -webkit-box-shadow: none;
+  border-color: #2196f3;
+  box-shadow: none;
+}
 .btn {
-    /*font-size: 17px;
-    padding: 7px 20px;*/
-    -ms-border-radius: 9px;
-    border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px;
 }
-
-/* page-level styles */
 .gigs {
-    list-style: none;
+  list-style: none;
 }
-
 .gigs > li {
-    position: relative;
-    margin-bottom: 30px;
+  margin-bottom: 30px;
+  position: relative;
 }
-
 .gigs > li .date {
-    background: red;
-    color: white;
-    text-align: center;
-    width: 60px;
-    border-radius: 8px;
+  background: red;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  width: 60px;
 }
-
 .gigs > li .date .month {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 2px 6px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 6px;
+  text-transform: uppercase;
 }
-
 .gigs > li .date .day {
-    background: #f7f7f7;
-    color: #333;
-    font-size: 20px;
-    padding: 6px 12px;
+  background: #f7f7f7;
+  color: #333333;
+  font-size: 20px;
+  padding: 6px 12px;
 }
-
 .gigs > li .details {
-    position: absolute;
-    top: 0;
-    left: 90px;
+  left: 90px;
+  position: absolute;
+  top: 0;
 }
-
 .gigs > li .details .artist {
-    font-weight: bold;
-    display: block;
+  display: block;
+  font-weight: bold;
 }
-
 .gigs > li .details .genre {
-    font-size: 15px;
-    margin-right: 30px;
+  font-size: 15px;
+  margin-right: 30px;
 }
-
 .gigs > li .actions {
-    font-size: 15px;
-    display: none;
+  display: none;
+  font-size: 15px;
 }
-
 .gigs > li:hover .actions {
-    display: block;
+  display: block;
 }
+.popover {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.popover-notifications .popover-content {
+  padding: 0;
+}
+.popover-notifications ul.notifications {
+  list-style: none;
+  padding-left: 0;
+}
+.popover-notifications ul.notifications .highlight {
+  font-weight: bold;
+}
+.popover-notifications ul.notifications > li {
+  border-bottom: 1px solid #dddddd;
+  padding: 10px;
+}
+.popover-notifications ul.notifications > li:last-child {
+  border-bottom: none;
+}
+#searchGigs {
+  width: 300px;
+}
+/*# sourceMappingURL=Site.css.map */

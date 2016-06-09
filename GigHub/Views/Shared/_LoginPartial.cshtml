@@ -11,11 +11,17 @@
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
     
+        <li class="notifications">
+            <a href="#">
+                <i class="glyphicon glyphicon-globe"></i>
+                <span class="badge hide js-notifications-count"></span>
+            </a>
+        </li>
         <li class="dropdown">
-            <div href="#" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <a href="#" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 @User.Identity.GetUserName()
                 <span class="caret"></span>
-            </div>
+            </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="@Url.Action("Mine", "Gigs")">My Upcoming Gigs</a></li>
                 <li><a href="@Url.Action("Attending", "Gigs")">Gigs I'm going</a></li>

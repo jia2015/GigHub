@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using GigHub.App_Start;
+using GigHub.Mappings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +16,7 @@ namespace GigHub
     {
         protected void Application_Start()
         {
+            AutoMapperConfiguration.Configure();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
