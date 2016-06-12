@@ -141,7 +141,8 @@ h6,
 }
 .gigs > li .details .genre {
   font-size: 15px;
-  margin-right: 30px;
+  display: block;
+  margin-bottom: 4px;
 }
 .gigs > li .actions {
   display: none;

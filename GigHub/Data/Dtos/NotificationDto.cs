@@ -1,7 +1,7 @@
 ﻿using GigHub.Models;
 using System;
 
-namespace GigHub.Dtos
+namespace GigHub.Data.Dtos
 {
     //data transfer object
     public class NotificationDto

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GigHub.App_Start;
 using GigHub.Mappings;
 using System;
 using System.Collections.Generic;

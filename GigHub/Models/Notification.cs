@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace GigHub.Models
 {
@@ -21,15 +16,13 @@ namespace GigHub.Models
         public NotificationType Type { get; private set; }
         public DateTime? OriginalDateTime { get; private set; }
         public string OriginalVenue { get; private set; }
-
-        [Required]
+        //[Required]
         public Gig Gig { get; private set; }
 
         protected Notification()
         {
 
         }
-
         private Notification(NotificationType type, Gig gig)
         {
             if (gig == null)
@@ -63,12 +56,11 @@ namespace GigHub.Models
 
     public class UserNotification
     {
-        [Key]
-        [Column(Order = 1)]
+        //[Key]
+        //[Column(Order = 1)]
         public string UserId { get; private set; }
-
-        [Key]
-        [Column(Order = 2)]
+        //[Key]
+        //[Column(Order = 2)]
         public int NotificationId { get; private set; }
         public ApplicationUser User { get; private set; }
         public Notification Notification { get; private set; }
@@ -78,7 +70,6 @@ namespace GigHub.Models
         {
 
         }
-
         public UserNotification(ApplicationUser user, Notification notification)
         {
             if (user == null)

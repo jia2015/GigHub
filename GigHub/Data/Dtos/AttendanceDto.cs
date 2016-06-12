@@ -1,5 +1,5 @@
 ﻿
-namespace GigHub.Dtos
+namespace GigHub.Data.Dtos
 {
     public class AttendanceDto
     {
