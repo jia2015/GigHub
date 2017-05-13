@@ -10,5 +10,6 @@ namespace GigHub.Data.Interfaces
         IEnumerable<Attendance> GetFutureAttendances(string userId);
         void Remove(Attendance attendance);
         void Add(Attendance attendance);
+        bool IsAttending(int gigId, string userId);
     }
 }

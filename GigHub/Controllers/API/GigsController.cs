@@ -33,6 +33,5 @@ namespace GigHub.Controllers.API
             return Ok();
         }
 
-        
     }
 }

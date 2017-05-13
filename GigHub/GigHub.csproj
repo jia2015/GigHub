@@ -214,6 +214,7 @@
     <Compile Include="Data\Configuration\GigConfiguration.cs" />
     <Compile Include="Data\Configuration\NotificationConfiguration.cs" />
     <Compile Include="Data\Configuration\UserNotificationConfiguration.cs" />
+    <Compile Include="Data\Infrastructure\IApplicationDbContext.cs" />
     <Compile Include="Data\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Data\Repositories\AttendanceRepository.cs" />

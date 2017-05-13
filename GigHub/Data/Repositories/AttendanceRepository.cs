@@ -37,5 +37,10 @@ namespace GigHub.Data.Repositories
         {
             _context.Attendances.Add(attendance);
         }
+
+        public bool IsAttending(int gigId, string userId)
+        {
+            return _context.Attendances.Any(g => g.GigId == gigId && g.AttendeeId == userId);
+        }
     }
 }
